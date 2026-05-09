@@ -38,7 +38,7 @@
 
         // Creamos la rotación usando Euler (X, Y, Z en radianes) y la pasamos a Cuaternión.
         // Math.PI / 2 equivale a 90 grados. Cambia el signo o el eje según hacia dónde esté volteado.
-        const rotacionCorregida = new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0)).toArray();
+        const rotacionCorregida = new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI, 0, 0)).toArray();
 
         viewer.addSplatScene(sceneFile, {
             'showLoadingUI': true,
