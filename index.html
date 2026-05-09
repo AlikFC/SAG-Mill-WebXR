@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PoC Molino SAG - GitHub Pages</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
+        #info { position: absolute; top: 10px; width: 100%; text-align: center; color: white; pointer-events: none; }
+    </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+            "@mkkellogg/gaussian-splats-3d": "https://unpkg.com/@mkkellogg/gaussian-splats-3d@0.4.2/build/gaussian-splats-3d.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="info">Cargando Molino SAG...</div>
+    <script type="module">
+        import * as THREE from 'three';
+        import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
+
+        // Configuración del visor
+        const viewer = new GaussianSplats3D.Viewer({
+            'cameraUp': [0, 1, 0],
+            'initialCameraPosition': [0, 1.5, 5],
+            'initialCameraLookAt': [0, 1.5, 0],
+            'webXRMode': true,
+            'sharedMemoryForWorkers': false // Evita errores de seguridad en algunos navegadores
+        });
+
+        // Nombre de tu archivo subido al repositorio
+        const sceneFile = 'molino_sag.spz'; 
+
+        viewer.addSplatScene(sceneFile, {
+            'showLoadingUI': true,
+            'splatAlphaCrop': 0.1
+        })
+        .then(() => {
+            document.getElementById('info').style.display = 'none';
+            viewer.start();
+        })
+        .catch((err) => {
+            document.getElementById('info').innerHTML = 'Error: ' + err.message;
+            console.error(err);
+        });
+    </script>
+</body>
+</html>
