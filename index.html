@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>PoC Molino SAG - GitHub Pages</title>
+    <title>PoC SAG Mill - WebXR</title>
     <style>
         body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
         #info { position: absolute; top: 10px; width: 100%; text-align: center; color: white; pointer-events: none; }
@@ -18,22 +18,22 @@
     </script>
 </head>
 <body>
-    <div id="info">Cargando Molino SAG...</div>
+    <div id="info">Loading SAG Mill...</div>
     <script type="module">
         import * as THREE from 'three';
         import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
 
-        // Configuración del visor
+        // Configuracion inicial del visor
         const viewer = new GaussianSplats3D.Viewer({
             'cameraUp': [0, 1, 0],
             'initialCameraPosition': [0, 1.5, 5],
             'initialCameraLookAt': [0, 1.5, 0],
             'webXRMode': true,
-            'sharedMemoryForWorkers': false // Evita errores de seguridad en algunos navegadores
+            'sharedMemoryForWorkers': false // Evita problemas de CORS
         });
 
-        // Nombre de tu archivo subido al repositorio
-        const sceneFile = 'molino_sag.spz'; 
+        // Nombre de archivo corregido
+        const sceneFile = './SAG_aereo_crop2.spz'; 
 
         viewer.addSplatScene(sceneFile, {
             'showLoadingUI': true,
