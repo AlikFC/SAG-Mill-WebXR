@@ -38,7 +38,9 @@
 
         viewer.addSplatScene(sceneFile, {
             'showLoadingUI': true,
-            'splatAlphaCrop': 0.1
+            'splatAlphaCrop': 0.1,
+            // Forzamos la lectura como KSplat, ignorando cualquier texto extra en la URL
+            'format': GaussianSplats3D.SceneFormat.KSplat 
         })
         .then(() => {
             document.getElementById('info').style.display = 'none';
