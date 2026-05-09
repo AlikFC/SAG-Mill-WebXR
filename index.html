@@ -8,11 +8,12 @@
         body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
         #info { position: absolute; top: 10px; width: 100%; text-align: center; color: white; pointer-events: none; }
     </style>
+    <!-- Actualizamos la versión de la librería quitando el @0.4.2 -->
     <script type="importmap">
     {
         "imports": {
             "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
-            "@mkkellogg/gaussian-splats-3d": "https://unpkg.com/@mkkellogg/gaussian-splats-3d@0.4.2/build/gaussian-splats-3d.module.js"
+            "@mkkellogg/gaussian-splats-3d": "https://unpkg.com/@mkkellogg/gaussian-splats-3d/build/gaussian-splats-3d.module.js"
         }
     }
     </script>
@@ -23,17 +24,17 @@
         import * as THREE from 'three';
         import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
 
-        // Configuracion inicial del visor
         const viewer = new GaussianSplats3D.Viewer({
             'cameraUp': [0, 1, 0],
             'initialCameraPosition': [0, 1.5, 5],
             'initialCameraLookAt': [0, 1.5, 0],
             'webXRMode': true,
-            'sharedMemoryForWorkers': false // Evita problemas de CORS
+            'sharedMemoryForWorkers': false
         });
 
-        // Nombre de archivo corregido
-        const sceneFile = './SAG_aereo_crop2.spz'; 
+        // TÁCTICA ROMPE-CACHÉ: Agregamos la fecha actual al final del archivo
+        // Esto obliga a GitHub Pages a soltar el archivo en lugar de usar memoria muerta
+        const sceneFile = './SAG_aereo_crop2.spz?v=' + Date.now(); 
 
         viewer.addSplatScene(sceneFile, {
             'showLoadingUI': true,
@@ -44,8 +45,9 @@
             viewer.start();
         })
         .catch((err) => {
-            document.getElementById('info').innerHTML = 'Error: ' + err.message;
-            console.error(err);
+            // Ahora sí deberíamos ver el error real si algo falla
+            document.getElementById('info').innerHTML = 'Error Real: ' + err.message;
+            console.error("Fallo detallado:", err);
         });
     </script>
 </body>
